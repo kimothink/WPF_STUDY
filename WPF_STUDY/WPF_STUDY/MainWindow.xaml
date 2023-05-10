@@ -7,8 +7,16 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Label x:Name="labelTest1" Content="Text" HorizontalAlignment="Left" Margin="37,75,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="buttonTest1" Content="Button" HorizontalAlignment="Left" Height="35" Margin="30,136,0,0" VerticalAlignment="Top" Width="47" Click="buttonTest1_Click"/>
+        <Label x:Name="labelTest1" Content="Text" HorizontalAlignment="Left" Margin="37,75,0,0" VerticalAlignment="Top">
+            <Label.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF221BEC"/>
+                    <GradientStop Color="#FF1E1A96" Offset="1"/>
+                    <GradientStop Color="#FF53BB2F" Offset="0.477"/>
+                </LinearGradientBrush>
+            </Label.Background>
+        </Label>
+        <Button x:Name="buttonTest1" Content="Button" Height="35" Margin="30,136,0,0" VerticalAlignment="Top" Width="47" Click="buttonTest1_Click"/>
         <CheckBox Content="CheckBox" HorizontalAlignment="Left" Height="18" Margin="53,199,0,0" VerticalAlignment="Top" Width="86"/>
 
     </Grid>
