@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF_STUDY.Models;
 
 namespace WPF_STUDY
 {
@@ -28,6 +29,22 @@ namespace WPF_STUDY
         private void buttonTest1_Click(object sender, RoutedEventArgs e)
         {
             labelTest1.Content = "Test";
+
+            User userA = new User();
+            userA.Name = "John";
+            userA.UserAge = 36;
+
+            User userB = new User();
+            userB.Name = "test";
+            userB.UserAge = 31;
+
+            List<User> Listuser = new List<User>();
+
+            Listuser.Add(userA);
+            Listuser.Add(userB);        
+
+            listview1.ItemsSource = Listuser; 
+
         }
     }
 }
