@@ -17,6 +17,14 @@
                     </LinearGradientBrush>
                 </Setter.Value>
             </Setter>
+            <Style.Triggers>
+                <!--<Trigger Property="Control.IsMouseOver" Value="True">
+                    <Setter Property="Control.Foreground" Value="Red"></Setter>
+                -->
+                <DataTrigger Binding="{Binding ElementName=CheckBox1}"></DataTrigger>
+                
+                </Trigger>
+            </Style.Triggers>
         </Style>
     </Window.Resources>
     <Grid>
@@ -24,7 +32,7 @@
          
         </Label>
         <Button x:Name="buttonTest1" Content="Button" Height="35" Margin="30,136,0,0" VerticalAlignment="Top" Width="47" Click="buttonTest1_Click" Style="{StaticResource teststyle}"/>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Height="18" Margin="53,199,0,0" VerticalAlignment="Top" Width="86"/>
+        <CheckBox x:name="CheckBox1"  Content="CheckBox" HorizontalAlignment="Left" Height="18" Margin="53,199,0,0" VerticalAlignment="Top" Width="86"/>
         <ListView  x:Name="listview1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,241,98,47">
             <ListView.View>
                 <GridView>
