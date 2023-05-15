@@ -23,12 +23,17 @@
                  
                 </Trigger>
                 -->
-                <DataTrigger Binding="{Binding ElementName=CheckBox1 , Path=IsChecked}" Value="True ">
-                    <Setter Property="Control.Foreground" Value="Red"></Setter>
-                    <Setter Property="Control.IsEnabled" Value="False"></Setter>
 
+                <!-- <DataTrigger Binding="{Binding ElementName=CheckBox1 , Path=IsChecked}" Value="True ">
+                    <Setter Property="Control.Foreground" Value="Red"></Setter>-->
+                   <!-- <Setter Property="Control.IsEnabled" Value="False"></Setter>
                 </DataTrigger>
-                
+                -->
+                <DataTrigger Binding="{Binding ElementName=progressbar1 , Path=Value}" Value="100">
+                    <Setter Property="Control.Visibility" Value="Hidden">
+                    </Setter>
+                </DataTrigger>
+               
             </Style.Triggers>
         </Style>
     </Window.Resources>
@@ -47,6 +52,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <ProgressBar x:Name="progressbar1"   HorizontalAlignment="Left" Height="26" Margin="125,75,0,0" VerticalAlignment="Top" Width="275" Value="{Binding ProgressValue}"/>
 
     </Grid>
 </Window>

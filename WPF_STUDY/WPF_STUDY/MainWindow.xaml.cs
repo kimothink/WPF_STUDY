@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WPF_STUDY.Models;
+using WPF_STUDY.ViewModels;
 
 namespace WPF_STUDY
 {
@@ -21,9 +22,14 @@ namespace WPF_STUDY
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        MainVIewModel mainViewModel;
         public MainWindow()
         {
             InitializeComponent();
+            mainViewModel = new MainVIewModel();
+            mainViewModel.ProgressValue = 30;
+            DataContext = mainViewModel;
         }
 
         private void buttonTest1_Click(object sender, RoutedEventArgs e)
@@ -43,8 +49,9 @@ namespace WPF_STUDY
             Listuser.Add(userA);
             Listuser.Add(userB);        
 
-            listview1.ItemsSource = Listuser; 
+            listview1.ItemsSource = Listuser;
 
+            mainViewModel.ProgressValue = 100;
         }
     }
 }
