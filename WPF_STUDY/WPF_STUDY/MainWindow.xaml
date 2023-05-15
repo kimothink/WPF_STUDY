@@ -23,8 +23,12 @@
                  
                 </Trigger>
                 -->
-                <DataTrigger Binding="{Binding ElementName=CheckBox1}"></DataTrigger>
-               
+                <DataTrigger Binding="{Binding ElementName=CheckBox1 , Path=IsChecked}" Value="True ">
+                    <Setter Property="Control.Foreground" Value="Red"></Setter>
+                    <Setter Property="Control.IsEnabled" Value="False"></Setter>
+
+                </DataTrigger>
+                
             </Style.Triggers>
         </Style>
     </Window.Resources>
