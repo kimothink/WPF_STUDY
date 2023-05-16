@@ -41,7 +41,7 @@
         <Label x:Name="labelTest1" Content="Text" HorizontalAlignment="Left" Margin="37,75,0,0" VerticalAlignment="Top" Style="{StaticResource teststyle}">
          
         </Label>
-        <Button x:Name="buttonTest1" Content="Button" Height="35" Margin="30,136,0,0" VerticalAlignment="Top" Width="47" Click="buttonTest1_Click" Style="{StaticResource teststyle}"/>
+        <Button x:Name="buttonTest1" Content="Button" Height="35" Margin="30,136,0,0" VerticalAlignment="Top" Width="47" Command="{Binding TestClick}" Style="{StaticResource teststyle}"/>
         <CheckBox x:Name="CheckBox1"  Content="CheckBox" HorizontalAlignment="Left" Height="18" Margin="53,199,0,0" VerticalAlignment="Top" Width="86"/>
         <ListView  x:Name="listview1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,241,98,47">
             <ListView.View>

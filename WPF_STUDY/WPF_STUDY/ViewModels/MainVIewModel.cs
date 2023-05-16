@@ -5,13 +5,20 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace WPF_STUDY.ViewModels
 {
     class MainVIewModel : INotifyPropertyChanged
     {
         private int progressValue;
+        public ICommand TestClick { get; set; }
 
+        public MainVIewModel()
+        {
+            TestClick  =    new    TestClickCommand(); 
+
+        }
         public int ProgressValue
         {
             get { return progressValue; }
