@@ -8,6 +8,9 @@ using System.Windows.Input;
 
 namespace WPF_STUDY
 {
+    /// <summary>
+    /// ICommand 추가 
+    /// </summary>
     class TestClickCommand : ICommand
     {
         public event EventHandler? CanExecuteChanged;
