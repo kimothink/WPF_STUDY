@@ -1,14 +1,15 @@
-﻿<Window x:Class="WPF_STUDY.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_STUDY"
+        xmlns:UserControls="clr-namespace:WPF_STUDY.UserControls" x:Class="WPF_STUDY.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Window.Resources>
         <Style x:Key="teststyle">
-            <Setter Property="Label.Background">
+            <Setter Property="Control.Background">
                 <Setter.Value>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="#FF221BEC"/>
@@ -26,22 +27,19 @@
 
                 <!-- <DataTrigger Binding="{Binding ElementName=CheckBox1 , Path=IsChecked}" Value="True ">
                     <Setter Property="Control.Foreground" Value="Red"></Setter>-->
-                   <!-- <Setter Property="Control.IsEnabled" Value="False"></Setter>
+                <!-- <Setter Property="Control.IsEnabled" Value="False"></Setter>
                 </DataTrigger>
                 -->
-                <DataTrigger Binding="{Binding ElementName=progressbar1 , Path=Value}" Value="100">
-                    <Setter Property="Control.Visibility" Value="Hidden">
-                    </Setter>
+                <DataTrigger Binding="{Binding Value, ElementName=progressbar1}" Value="100">
+                    <Setter Property="UIElement.Visibility" Value="Hidden"/>
                 </DataTrigger>
-               
+
             </Style.Triggers>
         </Style>
     </Window.Resources>
     <Grid>
-        <Label x:Name="labelTest1" Content="Text" HorizontalAlignment="Left" Margin="37,75,0,0" VerticalAlignment="Top" Style="{StaticResource teststyle}">
-         
-        </Label>
-        <Button x:Name="buttonTest1" Content="Button" Height="35" Margin="30,136,0,0" VerticalAlignment="Top" Width="47" Command="{Binding TestClick}" CommandParameter="{Binding ElementName=textBox1 ,Path=Text}" Style="{StaticResource teststyle}"/>
+        <Label x:Name="labelTest1" Content="Text" HorizontalAlignment="Left" Margin="37,75,0,0" VerticalAlignment="Top" Style="{StaticResource teststyle}"/>
+        <Button x:Name="buttonTest1" Content="Button" Height="35" Margin="30,136,0,0" VerticalAlignment="Top" Width="47" Command="{Binding TestClick}" CommandParameter="{Binding Text, ElementName=textBox1}" Style="{StaticResource teststyle}"/>
         <CheckBox x:Name="CheckBox1"  Content="CheckBox" HorizontalAlignment="Left" Height="18" Margin="53,199,0,0" VerticalAlignment="Top" Width="86"/>
         <ListView  x:Name="listview1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,241,98,47">
 
@@ -55,6 +53,10 @@
         </ListView>
         <ProgressBar x:Name="progressbar1"   HorizontalAlignment="Left" Height="26" Margin="125,75,0,0" VerticalAlignment="Top" Width="275" Value="{Binding ProgressValue}"/>
         <TextBox  x:Name="textBox1" HorizontalAlignment="Left" Margin="154,172,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+
+        <UserControls:ThreeControls HorizontalAlignment="Left" MyText="내가 만드 라벨" Margin="450,23,0,0" MyCommand="{Binding TestClick}" VerticalAlignment="Top"/>
+        <UserControls:ThreeControls HorizontalAlignment="Left" Height="83" Margin="679,88,0,0" VerticalAlignment="Top" Width="70"/>
+        <UserControls:MyLabel HorizontalAlignment="Left" Margin="600,172,0,0" VerticalAlignment="Top" Content="test"/>
 
     </Grid>
 </Window>
