@@ -55,8 +55,8 @@
         <TextBox  x:Name="textBox1" HorizontalAlignment="Left" Margin="154,172,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
 
         <UserControls:ThreeControls HorizontalAlignment="Left" MyText="내가 만드 라벨" Margin="450,23,0,0" MyCommand="{Binding TestClick}" VerticalAlignment="Top"/>
-        <UserControls:ThreeControls HorizontalAlignment="Left" Height="83" Margin="679,88,0,0" VerticalAlignment="Top" Width="70"/>
         <UserControls:MyLabel HorizontalAlignment="Left" Margin="600,172,0,0" VerticalAlignment="Top" Content="test"/>
+        <Button Content="Button" HorizontalAlignment="Left" Height="35" Margin="702,101,0,0" VerticalAlignment="Top" Width="34" Command="{Binding SecondShow}"/>
 
     </Grid>
 </Window>
