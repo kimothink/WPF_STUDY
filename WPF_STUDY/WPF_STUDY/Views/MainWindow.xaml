@@ -41,13 +41,13 @@
         <Label x:Name="labelTest1" Content="Text" HorizontalAlignment="Left" Margin="37,75,0,0" VerticalAlignment="Top" Style="{StaticResource teststyle}"/>
         <Button x:Name="buttonTest1" Content="Button" Height="35" Margin="30,136,0,0" VerticalAlignment="Top" Width="47" Command="{Binding TestClick}" CommandParameter="{Binding Text, ElementName=textBox1}" Style="{StaticResource teststyle}"/>
         <CheckBox x:Name="CheckBox1"  Content="CheckBox" HorizontalAlignment="Left" Height="18" Margin="53,199,0,0" VerticalAlignment="Top" Width="86"/>
-        <ListView  x:Name="listview1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,241,98,47">
+        <ListView  x:Name="listview1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,241,98,47" ItemsSource ="{Binding MyListUser}">
 
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="이미지" DisplayMemberBinding="{Binding userImg}" Width="300"/>
-                    <GridViewColumn Header="이름"  DisplayMemberBinding="{Binding Name}" Width="300"/>
-                    <GridViewColumn Header="나이" DisplayMemberBinding="{Binding UserAge}"/>
+                    <GridViewColumn Header="이미지" DisplayMemberBinding="{Binding USERIMG}" Width="300"/>
+                    <GridViewColumn Header="이름"  DisplayMemberBinding="{Binding USERNAME}" Width="300"/>
+                    <GridViewColumn Header="나이" DisplayMemberBinding="{Binding USERAGE}"/>
                 </GridView>
             </ListView.View>
         </ListView>
@@ -56,7 +56,9 @@
 
         <UserControls:ThreeControls HorizontalAlignment="Left" MyText="내가 만드 라벨" Margin="450,23,0,0" MyCommand="{Binding TestClick}" VerticalAlignment="Top"/>
         <UserControls:MyLabel HorizontalAlignment="Left" Margin="600,172,0,0" VerticalAlignment="Top" Content="test"/>
-        <Button Content="Button" HorizontalAlignment="Left" Height="35" Margin="702,101,0,0" VerticalAlignment="Top" Width="34" Command="{Binding SecondShow}"/>
+        <Button Content="Button" HorizontalAlignment="Left" Height="35" Margin="366,35,0,0" VerticalAlignment="Top" Width="34" Command="{Binding SecondShow}"/>
+        <Button Content="조회" HorizontalAlignment="Left" Height="27" Margin="669,190,0,0" VerticalAlignment="Top" Width="45" Command="{Binding SelectClick}"/>
+        <Button Content="추가" HorizontalAlignment="Left" Height="27" Margin="726,190,0,0" VerticalAlignment="Top" Width="45" Command="{Binding InsertClick}"/>
 
     </Grid>
 </Window>

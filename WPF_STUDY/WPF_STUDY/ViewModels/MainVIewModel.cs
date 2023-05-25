@@ -2,14 +2,16 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using WPF_STUDY.Models;
 using WPF_STUDY.Views;
+using MySql.Data.MySqlClient;
+using System.Data;
+using System.Collections.ObjectModel;
 
 namespace WPF_STUDY.ViewModels
 {
@@ -20,12 +22,36 @@ namespace WPF_STUDY.ViewModels
 
         public ICommand SecondShow { get; set; }
 
+        public ICommand SelectClick { get; set; }
+
+        public ICommand InsertClick { get; set; }
+
+
+        private List<USERINFO> myLiseUser = new List<USERINFO>();
+
+        
+
+        public List<USERINFO> MyListUser
+        {
+            get { return myLiseUser; }
+            set { myLiseUser = value;
+                NotifyPropertyChanged(nameof(MyListUser));  
+            }
+        }
+
+
 
         public MainVIewModel()
         {
             //TestClick = new RelayCommand<object>(ExecuteMyButton,CanMyButton);
             TestClick = new AsyncRelayCommand(ExecuteMyButton2);
+            
             SecondShow = new AsyncRelayCommand(ExecuteMyButton3);
+
+            SelectClick = new AsyncRelayCommand(SelectDatabase);
+
+            InsertClick = new AsyncRelayCommand(InsertDatabase);
+
 
         }
         public int ProgressValue
@@ -105,6 +131,56 @@ namespace WPF_STUDY.ViewModels
             secondView.ShowDialog();
 
             await Task.Delay(0);
+        }
+
+        public async Task SelectDatabase()
+        {
+            DataSet ds = new DataSet();
+            List<USERINFO> listUserTemp = new List<USERINFO>();
+
+
+            Task t = Task.Run(() =>
+            {
+                try
+                {
+                    using(MySqlConnection sqlConnection = new MySqlConnection(Properties.Settings.Default.connectionString))
+                    {
+                        sqlConnection.Open();
+                        MySqlDataAdapter adapter = new MySqlDataAdapter("Select * from USERINFO", sqlConnection);
+                        adapter.Fill(ds);
+                    }
+
+                    if(ds.Tables.Count > 0)
+                    {
+                        DataTable dt = ds.Tables[0];
+
+                        for (int i = 0; i < dt.Rows.Count; i++)
+                        {
+                            USERINFO userinfo = new USERINFO();
+                            userinfo.USERNAME = dt.Rows[i]["USERNAME"].ToString();
+                            userinfo.USERNAME = dt.Rows[i]["USERIMG"].ToString();
+                            userinfo.USERAGE = Int32.Parse(dt.Rows[i]["USERAGE"].ToString());
+
+                            listUserTemp.Add(userinfo); 
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+            });
+
+            await t;
+
+            MyListUser =    listUserTemp;   
+        }
+
+        public async Task InsertDatabase()
+        {
+            
+
         }
         private void NotifyPropertyChanged([CallerMemberName] String PropertyName = "")
         {
