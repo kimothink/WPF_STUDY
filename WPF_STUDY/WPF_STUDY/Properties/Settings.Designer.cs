@@ -25,7 +25,7 @@ namespace WPF_STUDY.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Server=14.7.11.165,1173; Database=mydb; user id=root; password=python3")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Server=14.7.11.165; Port=1173; Database=mydb; uid=root; pwd=python3;")]
         public string connectionString {
             get {
                 return ((string)(this["connectionString"]));

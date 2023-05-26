@@ -29,7 +29,41 @@ namespace WPF_STUDY.ViewModels
 
         private List<USERINFO> myLiseUser = new List<USERINFO>();
 
-        
+        private string name;
+
+        public string Name
+        {
+            get { return name; }
+            set { name = value;
+                NotifyPropertyChanged(nameof(Name));
+
+            }
+        }
+
+
+        private string img;
+
+        public string Img
+        {
+            get { return img; }
+            set { img = value;
+                NotifyPropertyChanged(nameof(Img));
+
+            }
+        }
+
+        private int age;
+
+        public int Age
+        {
+            get { return age; }
+            set { age = value;
+                NotifyPropertyChanged(nameof(Age));
+
+            }
+        }
+
+
 
         public List<USERINFO> MyListUser
         {
@@ -137,6 +171,7 @@ namespace WPF_STUDY.ViewModels
         {
             DataSet ds = new DataSet();
             List<USERINFO> listUserTemp = new List<USERINFO>();
+            Exception exectpion = null;
 
 
             Task t = Task.Run(() =>
@@ -145,6 +180,7 @@ namespace WPF_STUDY.ViewModels
                 {
                     using(MySqlConnection sqlConnection = new MySqlConnection(Properties.Settings.Default.connectionString))
                     {
+                        throw new Exception("나만의 예외!");
                         sqlConnection.Open();
                         MySqlDataAdapter adapter = new MySqlDataAdapter("Select * from USERINFO", sqlConnection);
                         adapter.Fill(ds);
@@ -158,29 +194,63 @@ namespace WPF_STUDY.ViewModels
                         {
                             USERINFO userinfo = new USERINFO();
                             userinfo.USERNAME = dt.Rows[i]["USERNAME"].ToString();
-                            userinfo.USERNAME = dt.Rows[i]["USERIMG"].ToString();
+                            userinfo.USERIMG = dt.Rows[i]["USERIMG"].ToString();
                             userinfo.USERAGE = Int32.Parse(dt.Rows[i]["USERAGE"].ToString());
 
                             listUserTemp.Add(userinfo); 
                         }
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
-                    throw;
+                    exectpion = ex;
                 }
             });
 
             await t;
+
+            if (exectpion != null)
+            {
+                MessageBox.Show(exectpion.Message.ToString());
+            }
 
             MyListUser =    listUserTemp;   
         }
 
         public async Task InsertDatabase()
         {
-            
+            Exception exectpion = null;
 
+
+            Task t = Task.Run(() =>
+            {
+                try
+                {
+                    using (MySqlConnection sqlConnection = new MySqlConnection(Properties.Settings.Default.connectionString))
+                    {
+                        sqlConnection.Open();
+                        MySqlCommand sqlCommand = sqlConnection.CreateCommand();
+                        sqlCommand.CommandText = "INSERT INTO USERINFO (USERNAME, USERIMG, USERAGE) VALUES('"+Name+"', '"+Img+"', '"+Age+"');";
+                        sqlCommand.ExecuteNonQuery();
+                        sqlConnection.Close();
+                    }
+
+                  
+                }
+                catch (Exception ex)
+                {
+                    exectpion = ex;
+                }
+            });
+
+            await t;
+
+            if (exectpion != null)
+            {
+                MessageBox.Show(exectpion.Message.ToString());
+            }
+
+            await SelectDatabase(); 
         }
         private void NotifyPropertyChanged([CallerMemberName] String PropertyName = "")
         {

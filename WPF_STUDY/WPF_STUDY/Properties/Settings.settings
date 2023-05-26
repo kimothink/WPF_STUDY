@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="connectionString" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Server=14.7.11.165,1173; Database=mydb; user id=root; password=python3</Value>
+      <Value Profile="(Default)">Server=14.7.11.165; Port=1173; Database=mydb; uid=root; pwd=python3;</Value>
     </Setting>
   </Settings>
 </SettingsFile>
