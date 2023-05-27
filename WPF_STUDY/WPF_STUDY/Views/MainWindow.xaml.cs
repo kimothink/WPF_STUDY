@@ -53,5 +53,10 @@ namespace WPF_STUDY
 
             mainViewModel.ProgressValue = 100;
         }
+
+        private void ComboBox_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }

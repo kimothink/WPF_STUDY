@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_STUDY"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:UserControls="clr-namespace:WPF_STUDY.UserControls" x:Class="WPF_STUDY.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
@@ -62,6 +63,16 @@
         <TextBox HorizontalAlignment="Left" Height="17" Margin="656,84,0,0" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Width="115"/>
         <TextBox HorizontalAlignment="Left" Height="19" Margin="656,117,0,0" TextWrapping="Wrap" Text="{Binding Img}" VerticalAlignment="Top" Width="115"/>
         <TextBox HorizontalAlignment="Left" Height="19" Margin="656,146,0,0" TextWrapping="Wrap" Text="{Binding Age}" VerticalAlignment="Top" Width="115"/>
-        
+        <ComboBox   HorizontalAlignment="Left" Height="15" Margin="471,181,0,0" VerticalAlignment="Top" Width="64" MouseDown="ComboBox_MouseDown">
+            <ComboBoxItem Content="사과"/>
+            <ComboBoxItem Content="포도"/>
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                <i:InvokeCommandAction Command="{Binding TestClick}"/>
+                </i:EventTrigger>
+        </i:Interaction.Triggers>
+
+    </ComboBox>
+
     </Grid>
 </Window>

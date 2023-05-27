@@ -180,7 +180,6 @@ namespace WPF_STUDY.ViewModels
                 {
                     using(MySqlConnection sqlConnection = new MySqlConnection(Properties.Settings.Default.connectionString))
                     {
-                        throw new Exception("나만의 예외!");
                         sqlConnection.Open();
                         MySqlDataAdapter adapter = new MySqlDataAdapter("Select * from USERINFO", sqlConnection);
                         adapter.Fill(ds);
@@ -220,7 +219,6 @@ namespace WPF_STUDY.ViewModels
         public async Task InsertDatabase()
         {
             Exception exectpion = null;
-
 
             Task t = Task.Run(() =>
             {
